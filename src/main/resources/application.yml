@@ -1,0 +1,27 @@
+## 服务配置
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /demo
+
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zues?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+
+## mybatis配置
+mybatis:
+  typeAliasesPackage: com.example.demo.dto
+  mapperLocations: classpath*:mapper/*.xml
+
+
+
+
+
+

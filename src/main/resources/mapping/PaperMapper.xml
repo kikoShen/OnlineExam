@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.PaperMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.dto.Paper" >
+    <id column="idpaper" property="idpaper" jdbcType="INTEGER" />
+    <result column="idteacher" property="idteacher" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="qarray" property="qarray" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idpaper, idteacher, starttime, endtime, job, level, qarray
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from paper
+    where idpaper = #{idpaper,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from paper
+    where idpaper = #{idpaper,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.dto.Paper" >
+    insert into paper (idpaper, idteacher, starttime, 
+      endtime, job, level, 
+      qarray)
+    values (#{idpaper,jdbcType=INTEGER}, #{idteacher,jdbcType=INTEGER}, #{starttime,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{qarray,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.dto.Paper" >
+    insert into paper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idpaper != null" >
+        idpaper,
+      </if>
+      <if test="idteacher != null" >
+        idteacher,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="qarray != null" >
+        qarray,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idpaper != null" >
+        #{idpaper,jdbcType=INTEGER},
+      </if>
+      <if test="idteacher != null" >
+        #{idteacher,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="qarray != null" >
+        #{qarray,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.Paper" >
+    update paper
+    <set >
+      <if test="idteacher != null" >
+        idteacher = #{idteacher,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="qarray != null" >
+        qarray = #{qarray,jdbcType=CHAR},
+      </if>
+    </set>
+    where idpaper = #{idpaper,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.Paper" >
+    update paper
+    set idteacher = #{idteacher,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      qarray = #{qarray,jdbcType=CHAR}
+    where idpaper = #{idpaper,jdbcType=INTEGER}
+  </update>
+</mapper>

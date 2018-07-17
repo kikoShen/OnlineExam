@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.QuestionBankMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.dto.QuestionBank" >
+    <id column="idquestion_bank" property="idquestionBank" jdbcType="INTEGER" />
+    <result column="job" property="job" jdbcType="CHAR" />
+    <result column="level" property="level" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idquestion_bank, job, level, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_bank
+    where idquestion_bank = #{idquestionBank,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question_bank
+    where idquestion_bank = #{idquestionBank,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.dto.QuestionBank" >
+    insert into question_bank (idquestion_bank, job, level, 
+      type)
+    values (#{idquestionBank,jdbcType=INTEGER}, #{job,jdbcType=CHAR}, #{level,jdbcType=CHAR}, 
+      #{type,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.dto.QuestionBank" >
+    insert into question_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idquestionBank != null" >
+        idquestion_bank,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idquestionBank != null" >
+        #{idquestionBank,jdbcType=INTEGER},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=CHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.QuestionBank" >
+    update question_bank
+    <set >
+      <if test="job != null" >
+        job = #{job,jdbcType=CHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+    </set>
+    where idquestion_bank = #{idquestionBank,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.QuestionBank" >
+    update question_bank
+    set job = #{job,jdbcType=CHAR},
+      level = #{level,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR}
+    where idquestion_bank = #{idquestionBank,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -2,127 +2,103 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.dto.User" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <id column="iduser" property="iduser" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="recommend_mobile" property="recommendMobile" jdbcType="VARCHAR" />
-    <result column="member_level" property="memberLevel" jdbcType="CHAR" />
-    <result column="level" property="level" jdbcType="CHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    user_id, mobile, name, recommend_mobile, member_level, level, create_time, last_modify_time
+    iduser, name, age, sex, password, email
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from zues_user
-    where user_id = #{userId,jdbcType=INTEGER}
+    from user
+    where iduser = #{iduser,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from zues_user
-    where user_id = #{userId,jdbcType=INTEGER}
+    delete from user
+    where iduser = #{iduser,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.demo.dto.User" >
-    insert into zues_user (user_id, mobile, name, 
-      recommend_mobile, member_level, level, 
-      create_time, last_modify_time)
-    values (#{userId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{recommendMobile,jdbcType=VARCHAR}, #{memberLevel,jdbcType=CHAR}, #{level,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{lastModifyTime,jdbcType=TIMESTAMP})
+    insert into user (iduser, name, age, 
+      sex, password, email)
+    values (#{iduser,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{sex,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.dto.User" >
-    insert into zues_user
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="mobile != null" >
-        mobile,
+      <if test="iduser != null" >
+        iduser,
       </if>
       <if test="name != null" >
         name,
       </if>
-      <if test="recommendMobile != null" >
-        recommend_mobile,
+      <if test="age != null" >
+        age,
       </if>
-      <if test="memberLevel != null" >
-        member_level,
+      <if test="sex != null" >
+        sex,
       </if>
-      <if test="level != null" >
-        level,
+      <if test="password != null" >
+        password,
       </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time,
+      <if test="email != null" >
+        email,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="mobile != null" >
-        #{mobile,jdbcType=VARCHAR},
+      <if test="iduser != null" >
+        #{iduser,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="recommendMobile != null" >
-        #{recommendMobile,jdbcType=VARCHAR},
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
       </if>
-      <if test="memberLevel != null" >
-        #{memberLevel,jdbcType=CHAR},
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
       </if>
-      <if test="level != null" >
-        #{level,jdbcType=CHAR},
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyTime != null" >
-        #{lastModifyTime,jdbcType=TIMESTAMP},
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.User" >
-    update zues_user
+    update user
     <set >
-      <if test="mobile != null" >
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="recommendMobile != null" >
-        recommend_mobile = #{recommendMobile,jdbcType=VARCHAR},
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="memberLevel != null" >
-        member_level = #{memberLevel,jdbcType=CHAR},
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
       </if>
-      <if test="level != null" >
-        level = #{level,jdbcType=CHAR},
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=INTEGER}
+    where iduser = #{iduser,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.User" >
-    update zues_user
-    set mobile = #{mobile,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      recommend_mobile = #{recommendMobile,jdbcType=VARCHAR},
-      member_level = #{memberLevel,jdbcType=CHAR},
-      level = #{level,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP}
-    where user_id = #{userId,jdbcType=INTEGER}
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=CHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where iduser = #{iduser,jdbcType=INTEGER}
   </update>
 </mapper>

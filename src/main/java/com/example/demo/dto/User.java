@@ -1,43 +1,24 @@
 package com.example.demo.dto;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
-
-import java.util.Date;
-
-@Repository
-@Mapper
 public class User {
-    private Integer userId;
-
-    private String mobile;
+    private Integer iduser;
 
     private String name;
 
-    private String recommendMobile;
+    private Integer age;
 
-    private String memberLevel;
+    private String sex;
 
-    private String level;
+    private String password;
 
-    private Date createTime;
+    private String email;
 
-    private Date lastModifyTime;
-
-    public Integer getUserId() {
-        return userId;
+    public Integer getIduser() {
+        return iduser;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+    public void setIduser(Integer iduser) {
+        this.iduser = iduser;
     }
 
     public String getName() {
@@ -48,43 +29,35 @@ public class User {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getRecommendMobile() {
-        return recommendMobile;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setRecommendMobile(String recommendMobile) {
-        this.recommendMobile = recommendMobile == null ? null : recommendMobile.trim();
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public String getMemberLevel() {
-        return memberLevel;
+    public String getSex() {
+        return sex;
     }
 
-    public void setMemberLevel(String memberLevel) {
-        this.memberLevel = memberLevel == null ? null : memberLevel.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getLevel() {
-        return level;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastModifyTime() {
-        return lastModifyTime;
-    }
-
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

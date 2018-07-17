@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.FillInBlankMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.dto.FillInBlank" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="answera" property="answera" jdbcType="VARCHAR" />
+    <result column="answerb" property="answerb" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, question, answera, answerb
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fill_in_the_blank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fill_in_the_blank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.dto.FillInBlank" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fill_in_the_blank (question, answera, answerb
+      )
+    values (#{question,jdbcType=VARCHAR}, #{answera,jdbcType=VARCHAR}, #{answerb,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.dto.FillInBlank" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fill_in_the_blank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="answera != null" >
+        answera,
+      </if>
+      <if test="answerb != null" >
+        answerb,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answera != null" >
+        #{answera,jdbcType=VARCHAR},
+      </if>
+      <if test="answerb != null" >
+        #{answerb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.FillInBlank" >
+    update fill_in_the_blank
+    <set >
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answera != null" >
+        answera = #{answera,jdbcType=VARCHAR},
+      </if>
+      <if test="answerb != null" >
+        answerb = #{answerb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.FillInBlank" >
+    update fill_in_the_blank
+    set question = #{question,jdbcType=VARCHAR},
+      answera = #{answera,jdbcType=VARCHAR},
+      answerb = #{answerb,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

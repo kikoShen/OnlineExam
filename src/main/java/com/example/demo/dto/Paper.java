@@ -15,6 +15,8 @@ public class Paper {
 
     private String qarray;
 
+    private String status;
+
     public Integer getIdpaper() {
         return idpaper;
     }
@@ -69,5 +71,13 @@ public class Paper {
 
     public void setQarray(String qarray) {
         this.qarray = qarray == null ? null : qarray.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 }

@@ -9,9 +9,10 @@
     <result column="job" property="job" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="VARCHAR" />
     <result column="qarray" property="qarray" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    idpaper, idteacher, starttime, endtime, job, level, qarray
+    idpaper, idteacher, starttime, endtime, job, level, qarray, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.example.demo.dto.Paper" >
     insert into paper (idpaper, idteacher, starttime, 
       endtime, job, level, 
-      qarray)
+      qarray, status)
     values (#{idpaper,jdbcType=INTEGER}, #{idteacher,jdbcType=INTEGER}, #{starttime,jdbcType=VARCHAR}, 
       #{endtime,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
-      #{qarray,jdbcType=CHAR})
+      #{qarray,jdbcType=CHAR}, #{status,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.dto.Paper" >
     insert into paper
@@ -55,6 +56,9 @@
       <if test="qarray != null" >
         qarray,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="idpaper != null" >
@@ -77,6 +81,9 @@
       </if>
       <if test="qarray != null" >
         #{qarray,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="qarray != null" >
         qarray = #{qarray,jdbcType=CHAR},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
     </set>
     where idpaper = #{idpaper,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,8 @@
       endtime = #{endtime,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
       level = #{level,jdbcType=VARCHAR},
-      qarray = #{qarray,jdbcType=CHAR}
+      qarray = #{qarray,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR}
     where idpaper = #{idpaper,jdbcType=INTEGER}
   </update>
 </mapper>
